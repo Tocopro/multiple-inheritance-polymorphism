@@ -1,0 +1,61 @@
+#include <iostream>
+#include <list>
+using namespace std;
+
+class YoutubeChannel
+{
+private:
+    string Name;
+    int subscriptionCount;
+    list<string> publishedVideoTitle;
+protected:
+    string OwnerName;
+public:
+    YoutubeChannel(string name, string ownerName)
+    {
+        Name = name;
+        OwnerName = ownerName;
+        subscriptionCount = 0;
+    }
+    void GetInfo()
+    {
+        cout << "Name: " << Name << endl;
+        cout << "OwnerName: " << OwnerName << endl;
+        cout << "SubscribersCount: " << subscriptionCount << endl;
+        cout << "Videos: " << endl;
+        for (string videoTitle: publishedVideoTitle)
+        {
+            cout << videoTitle << endl;
+        }
+    }
+    void Subscribe()
+    {
+        subscriptionCount++;
+    }
+    void Unsubscribe()
+    {
+        if (subscriptionCount > 0)
+            subscriptionCount--;
+    }
+    void publishedVideo(string title)
+    {
+        publishedVideoTitle.push_back(title);
+    }
+};
+class CookingYoutubeChannel: public YoutubeChannel
+{
+public:
+    CookingYoutubeChannel(string name, string ownerName): YoutubeChannel(name, OwnerName)
+    {
+
+    }
+    void Practise()
+    {
+        cout << OwnerName << " is Practising cooking, learning new recipes, experimenting with spices...." << endl;
+    }
+};
+int main()
+{
+    CookingYoutubeChannel cookingYoutubeChannel("Kim's Kitchen", "Kim's");
+    system("pause > 0");
+}
